@@ -1,20 +1,12 @@
 import os
-import sys
-import time
 import math
 import pickle
-import subprocess
-import json
 
 import pandas as pd
 import numpy as np
-import sklearn
 import matplotlib.pyplot as plt
 import cv2 as cv
 import mediapipe as mp
-import seaborn as sn
-import smogn
-import statsmodels.api as sm
 
 from numpy.fft import fft, ifft
 from statistics import mode, median, quantiles
