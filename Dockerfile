@@ -16,4 +16,4 @@ COPY . /app
 RUN pip install --upgrade pip && pip install -r requirements.txt
 EXPOSE 8501
 # Run Streamlit app
-CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.enableCORS=false", "--server.enableXsrfProtection=false", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "Predict.py", "--server.port=8501", "--server.enableCORS=false", "--server.enableXsrfProtection=false", "--server.address=0.0.0.0"]
