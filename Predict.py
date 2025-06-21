@@ -121,8 +121,7 @@ def process_video(video_path, hand):
     print("Base file: %s"%(base_file))
 
     full_dir_path = os.path.join(output_path,base_file)
-    if not os.path.exists(full_dir_path):
-        os.mkdir(full_dir_path)
+    os.makedirs(full_dir_path, exist_ok=True)
 
     # Extract features from the video
     print("Extracting features from the video...")

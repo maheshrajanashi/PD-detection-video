@@ -12,6 +12,9 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 COPY . /app
+
+# provide write permissions to the app directory
+RUN chmod -R 777 /app
 # Install Python dependencies
 RUN pip install --upgrade pip && pip install -r requirements.txt
 EXPOSE 8501
