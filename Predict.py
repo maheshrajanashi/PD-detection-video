@@ -184,6 +184,7 @@ def Init():
 
                 # display png images in the output directory
                 st.write(f"Output saved to: {outputPath}")
+                st.image(os.path.join(outputPath, handCaps, "wrist_movement.png"), caption="Wrist Movement")
                 st.image(os.path.join(outputPath+"/"+handCaps, "finger_taps_vs_time_line.png"), caption="Finger Taps vs Time")
                 st.image(os.path.join(outputPath, "feature_importance.png"), caption="Feature Importance")
                 st.image(os.path.join(outputPath, "severity_prediction.png"), caption="Severity Prediction")
@@ -202,6 +203,21 @@ def Init():
                         file_name="output.mp4",
                         mime="video/mp4"
                     )
+                    # download button for the intermediate_features file
+                    intermediate_features_path = os.path.join(outputPath, handCaps, "intermediate_features.pkl")
+                    if os.path.exists(intermediate_features_path):
+                        with open(intermediate_features_path, "rb") as pkl_file:
+                            pkl_bytes = pkl_file.read()
+
+                        st.download_button(
+                            label="📥 Download Intermediate Features",
+                            data=pkl_bytes,
+                            file_name="intermediate_features.pkl",
+                            mime="application/octet-stream"
+                        )
+
+                    else:
+                        st.error("Features file not found at: " + intermediate_features_path)
                 else:
                     st.error("Video file not found at: " + vidPath)
 

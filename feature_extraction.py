@@ -1,7 +1,7 @@
 import os
 import math
 import pickle
-
+import json
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -949,6 +949,17 @@ def extract_features(filename, output_path, hand, labels=(0,"")):
     # Calculate variability score
     variability_score = calculate_variability(peaks, PER_FRAME_DURATION)
     features['variability_score'] = variability_score
+
+    # save D, Duration, and variability score to the new features dictionary
+    new_features = {
+        'D': np.asarray(D),
+        'DURATION': DURATION,
+        'variability_score': variability_score
+    }
+
+    # Save the new features dictionary to a json file
+    with open(os.path.join(full_dir_path, "features.json"), 'w') as f:
+        json.dump(new_features, f, indent=4)
 
     # Generate the finger taps vs time graph with variability score
     plot_finger_taps_vs_time(D, DURATION, full_dir_path, variability_score)
