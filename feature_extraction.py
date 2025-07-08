@@ -7,6 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2 as cv
 import mediapipe as mp
+import shutil
 
 from numpy.fft import fft, ifft
 from statistics import mode, median, quantiles
@@ -782,6 +783,14 @@ def extract_features(filename, output_path, hand, labels=(0,"")):
     <intermediate-feature-file>  
     <output-video-with-mp-annotation>
     '''
+
+    # delete the other sub directories in the output_path
+    if os.path.exists(output_path):
+        for subdir in os.listdir(output_path):
+            subdir_path = os.path.join(output_path, subdir)
+            if os.path.isdir(subdir_path):
+                print("Deleting sub-directory: %s"%(subdir_path))
+                shutil.rmtree(subdir_path)
     
     hand = hand.lower()
     FEATURE_DIR = output_path
@@ -957,9 +966,6 @@ def extract_features(filename, output_path, hand, labels=(0,"")):
         'variability_score': variability_score
     }
 
-    # Save the new features dictionary to a json file
-    with open(os.path.join(full_dir_path, "features.json"), 'w') as f:
-        json.dump(new_features, f, indent=4)
 
     # Generate the finger taps vs time graph with variability score
     plot_finger_taps_vs_time(D, DURATION, full_dir_path, variability_score)

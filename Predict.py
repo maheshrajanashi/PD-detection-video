@@ -184,7 +184,6 @@ def Init():
 
                 # display png images in the output directory
                 st.write(f"Output saved to: {outputPath}")
-                st.image(os.path.join(outputPath, handCaps, "wrist_movement.png"), caption="Wrist Movement")
                 st.image(os.path.join(outputPath+"/"+handCaps, "finger_taps_vs_time_line.png"), caption="Finger Taps vs Time")
                 st.image(os.path.join(outputPath, "feature_importance.png"), caption="Feature Importance")
                 st.image(os.path.join(outputPath, "severity_prediction.png"), caption="Severity Prediction")
